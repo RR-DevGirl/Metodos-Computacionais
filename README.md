@@ -82,8 +82,8 @@ Ao realizar buscas entre os pontos definidos, os seguintes tempos de execução 
 
 ### 5. Considerações Finais e melhorias no metro
 
-A análise dos resultados demonstra claramente as diferenças de desempenho e a natureza dos algoritmos quando aplicados a grafos ponderados e não ponderados. Para rotas em uma rede de transporte, a escolha do algoritmo e a estrutura do grafo (ponderado ou não) têm um impacto significativo na eficiência do trajeto final e no tempo de execução. Em cenários onde o tempo é crítico, a implementação de algoritmos como Dijkstra em grafos ponderados é preferível, enquanto grafos não ponderados podem ser utilizados para situações onde a simplicidade e a exploração são mais relevantes.
-Com isso podemos concluir que esses sistemas quando melhores lapidados e treinados com mais dados de diferentes horários, poderia trazer uma leitura mais assertiva e dinamica dos melhores trajetos para cada hora
+A análise dos resultados demonstra claramente as diferenças de desempenho a depender dos algoritmos e quando aplicados a grafos ponderados e não ponderados. Para rotas em uma rede de transporte, a escolha do algoritmo e a estrutura do grafo (ponderado ou não) têm um impacto significativo na eficiência do trajeto final e no tempo de execução. Em cenários onde o tempo é crítico, a implementação de algoritmos como Dijkstra em grafos ponderados é preferível, enquanto grafos não ponderados podem ser utilizados para situações onde a simplicidade e a exploração são mais relevantes.
+Com isso podemos concluir que esses sistemas quando melhores lapidados e treinados com mais dados de diferentes horários, poderia trazer uma leitura mais assertiva e dinamica dos melhores trajetos para cada hora além de ajudar na constante analise da eficiencia do atual sistema. Afinal só conseguimos tomar decisões com dados.
 
 ---
 
