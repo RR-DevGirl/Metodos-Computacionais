@@ -42,32 +42,30 @@ def bfs(metro_map, origem, destino):
 
 
 def dfs(grafo, caminho_atual, estacao_atual, estacao_destino, tempo_total, melhor_caminho, melhor_tempo):
-    # Adiciona a estação atual ao caminho
+    # Add a estação atual a lista do caminho
     caminho_atual.append(estacao_atual)
 
-    # Se chegamos à estação de destino, verificamos se o caminho atual é o melhor
     if estacao_atual == estacao_destino:
-        if tempo_total < melhor_tempo[0]:  # Se o tempo total é menor que o melhor tempo
+        if tempo_total < melhor_tempo[0]: 
             melhor_tempo[0] = tempo_total
             melhor_caminho.clear()
             melhor_caminho.extend(caminho_atual)
     else:
-        # Explora as conexões da estação atual
+        # Conexões da estação atual
         for vizinho, tempo in grafo.get(estacao_atual, []):  # Usa .get() para evitar KeyError
             if vizinho not in caminho_atual:  # Para evitar ciclos
                 dfs(grafo, caminho_atual, vizinho, estacao_destino, tempo_total + tempo, melhor_caminho, melhor_tempo)
     
-    # Remove a estação atual do caminho (backtracking)
+    # Remove a estação atual da lista do caminho
     caminho_atual.pop()
 
-# Função principal para encontrar o caminho mais rápido
+
 def encontrar_caminho_mais_rapido(grafo, origem, destino):
-    melhor_caminho = []  # Lista para armazenar o melhor caminho encontrado
-    melhor_tempo = [float('inf')]  # Inicia com um tempo infinito
-    # Chama a função DFS
+    melhor_caminho = []  # Lista que guarda o melhor caminho
+    melhor_tempo = [float('inf')]
+
     dfs(grafo, [], origem, destino, 0, melhor_caminho, melhor_tempo)
     
-    # Verifica se o tempo encontrado não é infinito (ou seja, se encontrou um caminho)
     if melhor_tempo[0] == float('inf'):
         return [], "Caminho não encontrado"
     
@@ -90,7 +88,6 @@ def processaResposta(metodo, tempoExecucaoMetodo, origem, destino, trajetoria, t
     print(f"Menor caminho de {origem} até {destino}: {' -> '.join(trajetoria)}")
     print(f"Tempo total: {tempoTrajetoria} minutos.\n")
 
-# Teste inicial: Camaragibe -> Cajueiro Seco
 origem = input('Informe a origem: ')
 destino = input('Informe o destino: ')
 op = 0
