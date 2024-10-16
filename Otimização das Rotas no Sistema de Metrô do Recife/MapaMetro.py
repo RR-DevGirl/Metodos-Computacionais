@@ -18,7 +18,7 @@ metro_map = {
     'Engenho Velho': [('Jaboatão', 5), ('Floriano', 5)],
     'Floriano': [('Engenho Velho', 5), ('Cavaleiro', 12)],
     'Cavaleiro': [('Floriano', 12), ('Coqueiral', 4)],
-    'Imbiribeira': [('Afogados', 5), ('Largo da Paz', 3)],
+    'Imbiribeira': [('Afogados', 5), ('Largo da Paz', 3), ('Antônio Falcão', 10)], 
     'Largo da Paz': [('Imbiribeira', 3), ('Aeroporto', 6)],
     'Aeroporto': [('Largo da Paz', 6), ('Prazeres', 5), ('Porta Larga', 6)],
     'Prazeres': [('Aeroporto', 5), ('Monte dos Guararapes', 4), ('Cajueiro Seco', 7)],
@@ -31,7 +31,7 @@ metro_map = {
 }
 
 
-metro_map_n_pond = {
+metro_map_n_pond =  {
     'Camaragibe': [('Cosme e Damião', 1)],
     'Cosme e Damião': [('Camaragibe', 1), ('Rodoviária', 1)],
     'Rodoviária': [('Cosme e Damião', 1), ('Curado', 1)],
@@ -51,7 +51,7 @@ metro_map_n_pond = {
     'Engenho Velho': [('Jaboatão', 1), ('Floriano', 1)],
     'Floriano': [('Engenho Velho', 1), ('Cavaleiro', 1)],
     'Cavaleiro': [('Floriano', 1), ('Coqueiral', 1)],
-    'Imbiribeira': [('Afogados', 1), ('Largo da Paz', 1)],
+    'Imbiribeira': [('Afogados', 1), ('Largo da Paz', 1), ('Antônio Falcão', 1)],
     'Largo da Paz': [('Imbiribeira', 1), ('Aeroporto', 1)],
     'Aeroporto': [('Largo da Paz', 1), ('Prazeres', 1), ('Porta Larga', 1)],
     'Prazeres': [('Aeroporto', 1), ('Monte dos Guararapes', 1), ('Cajueiro Seco', 1)],

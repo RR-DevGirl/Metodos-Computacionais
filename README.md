@@ -1,69 +1,155 @@
-# Projeto de Otimização das Rotas no Sistema de Metrô do Recife
+# Projeto de Otimização das Rotas no Sistema de Metrô do Recife e Organização Dinâmica da Agenda do "Olha! Recife"
 
-## 1. Introdução
+## Questão 1: Otimização das Rotas no Sistema de Metrô do Recife
 
-Neste projeto, analisamos o sistema de metrô do Recife modelando-o como um grafo. O objetivo é otimizar as rotas entre diferentes estações utilizando algoritmos de busca para determinar a rota mais eficiente em termos de tempo de viagem.
+### 1. Introdução
+
+A cidade do Recife possui um sistema de metrô com várias estações interligadas. O atual mapa do metrô apresenta diversas possibilidades de rotas, e algumas conexões são mais rápidas do que outras. O objetivo é encontrar a rota mais rápida para viagens frequentes entre estações.
 
 ![enter image description here](./Otimização%20das%20Rotas%20no%20Sistema%20de%20Metrô%20do%20Recife/docs/mapa-metro-recife-simplificado.jpg)
 
-## 2. Resultados Obtidos
+### 2. Proposta de Problema
 
-A diferença nos tempos totais entre **grafos ponderados** e **não ponderados** foi significativa, com um total de **32 minutos** para o grafo ponderado e **14 minutos** para o grafo não ponderado. Essa discrepância é causada pela forma como os algoritmos lidam com os pesos das arestas.
+Modelar o sistema de metrô como um grafo:
+- Cada estação é um nó.
+- Cada conexão direta entre duas estações é uma aresta, com um peso associado representando o tempo de viagem entre elas.
 
-## 3. Grafos Ponderados
+### 3. Algoritmos a serem Utilizados
 
-### 3.1. Definição
+1. **Dijkstra**:
+   - Utilizado em grafos ponderados, onde as arestas têm pesos que representam o tempo de viagem. Este algoritmo encontra o caminho mais curto considerando a soma dos pesos das arestas.
 
-Em um grafo ponderado, cada aresta possui um valor (peso) que pode representar **distância**, **tempo**, **custo**, entre outros. Esses pesos impactam diretamente a escolha do caminho pelos algoritmos que consideram os pesos, como o Dijkstra.
+2. **BFS (Busca em Largura)**:
+   - Ideal para grafos não ponderados. Explora todos os vizinhos de um nó antes de passar para o próximo nível, garantindo que o caminho encontrado tenha o menor número de arestas.
 
-### 3.2. Exemplo Ponderado
 
-- O menor caminho encontrado por Dijkstra foi:  
-  `Camaragibe -> Cosme e Damião -> Rodoviária -> Curado -> Alto do Céu -> Coqueiral -> Tejipió -> Barro -> Recife` com **32 minutos**.
-- O algoritmo Dijkstra otimiza o caminho com base nos **tempos de viagem** (pesos), selecionando o que apresenta o menor **somatório de tempos**.
+3. **DFS (Busca em Profundidade)**:
+   - Explora o máximo possível ao longo de um caminho antes de retroceder. Pode encontrar um caminho, mas não garante que seja o menor em termos de arestas.
 
-### 3.3. Funcionamento do Algoritmo Dijkstra
 
-- Dijkstra analisa os **pesos das arestas** e determina o caminho com o menor somatório de pesos entre o ponto de partida e o destino.
-- **DFS** e **BFS** não consideram os pesos, focando apenas na quantidade de nós ou na exploração do grafo. Isso pode resultar em soluções que não garantem o menor tempo ou custo.
+## 4. Análise dos Resultados
 
-## 4. Grafos Não Ponderados
+### Resultados dos Algoritmos
 
-### 4.1. Definição
+**Grafo Ponderado:**  
+O menor caminho encontrado pelo algoritmo de Dijkstra foi:
+- **Caminho:** Camaragibe → Cosme e Damião → Rodoviária → Curado → Alto do Céu → Coqueiral → Tejipió → Barro → Recife  
+- **Tempo total:** 32 minutos.
 
-Em grafos não ponderados, todas as arestas têm o mesmo valor ou são consideradas com um peso implícito de 1. Assim, os algoritmos buscam o menor caminho em termos de quantidade de arestas, sem considerar o tempo ou a distância.
+**Grafo Não Ponderado:**  
+O caminho encontrado foi:
+- **Caminho:** Camaragibe → Cosme e Damião → Rodoviária → Curado → Alto do Céu → Coqueiral → Tejipió → Barro → Werneck → Santa Luzia → Mangueira → Ipiranga → Afogados → Joana Bezerra → Recife  
+- **Tempo total:** 14 minutos.
 
-### 4.2. Exemplo Não Ponderado
+### Comparação de Algoritmos
 
-- O caminho encontrado foi:  
-  `Camaragibe -> Cosme e Damião -> Rodoviária -> Curado -> Alto do Céu -> Coqueiral -> Tejipió -> Barro -> Werneck -> Santa Luzia -> Mangueira -> Ipiranga -> Afogados -> Joana Bezerra -> Recife` com **14 minutos**.
-- O algoritmo buscou o menor caminho **em termos de quantidade de arestas**, o que pode não ser realista se estivermos considerando o tempo real de deslocamento.
+Ao realizar buscas entre os pontos definidos, os seguintes tempos de execução e resultados foram observados:
 
-### 4.3. Funcionamento dos Algoritmos em Grafos Não Ponderados
+- **Dijkstra:**
+  - **Tempo de Execução:** 0.000102519 segundos
+  - **Menor caminho de Barro até Shopping:** Barro → Werneck → Santa Luzia → Mangueira → Ipiranga → Afogados → Imbiribeira → Antônio Falcão → Shopping  
+  - **Tempo total:** 8 minutos.
 
-- **Dijkstra** em grafos não ponderados: O algoritmo se comporta de maneira semelhante ao BFS, encontrando o menor caminho em termos de arestas, pois todas têm o mesmo peso.
-- **BFS**: Ideal para encontrar o menor caminho em termos de número de arestas, garantindo o menor número de "paradas".
-- **DFS**: Também encontra um caminho, mas não garante que seja o menor em termos de arestas.
+- **Busca em Largura (BFS):**
+  - **Tempo de Execução:** 4.887580e-05 segundos
+  - **Menor caminho de Barro até Shopping:** Barro → Werneck → Santa Luzia → Mangueira → Ipiranga → Afogados → Imbiribeira → Antônio Falcão → Shopping  
+  - **Tempo total:** 8 minutos.
 
-## 5. Análise dos Resultados
+- **Busca em Profundidade (DFS):**
+  - **Tempo de Execução:** 5.173683e-05 segundos
+  - **Menor caminho de Barro até Shopping:** Barro → Werneck → Santa Luzia → Mangueira → Ipiranga → Afogados → Imbiribeira → Antônio Falcão → Shopping  
+  - **Tempo total:** 8 minutos.
 
-### 5.1. Comparação de Tempos
+### Análise das Diferenças entre Grafos Ponderados e Não Ponderados
 
-- **Grafos Ponderados**: O tempo total reflete o caminho com o menor somatório de pesos, proporcionando uma otimização mais realista baseada em tempo (32 minutos).
-- **Grafos Não Ponderados**: O tempo total é menor, mas não reflete a realidade das viagens, já que os pesos não foram considerados (14 minutos).
+#### Grafos Ponderados:
+- **Características:**
+  - As arestas possuem pesos diferentes, representando custos variados, como tempo de viagem ou distância.
+  - O algoritmo de Dijkstra é utilizado para encontrar o menor caminho com base no custo total (tempo) associado a cada aresta.
 
-### 5.2. Resumo das Diferenças
+- **Observações:**
+  - Dijkstra considera o tempo de viagem como um fator crucial na determinação do caminho mais curto. 
+  - Isso resulta em um caminho que pode ser mais longo em termos de distância, mas mais eficiente em termos de tempo, como evidenciado pelo caminho de Camaragibe a Recife.
 
-| Tipo de Grafo         | Características                                 | Exemplo de Tempo | Análise                                    |
-|-----------------------|------------------------------------------------|------------------|--------------------------------------------|
-| Grafo Ponderado       | Pesos variados nas arestas                     | 32 minutos       | Dijkstra prioriza rotas de menor peso total. |
-| Grafo Não Ponderado   | Todas as arestas têm o mesmo valor            | 14 minutos       | O foco é minimizar a quantidade de arestas.   |
+#### Grafos Não Ponderados:
+- **Características:**
+  - As arestas têm o mesmo peso (custo igual), o que simplifica a análise do caminho.
+  - O objetivo é minimizar a quantidade de arestas, ignorando o custo associado a cada aresta.
 
-## 6. Conclusão
+- **Observações:**
+  - Os algoritmos BFS e DFS, utilizados em grafos não ponderados, focam na simplicidade e na exploração do espaço de busca sem levar em conta a duração da viagem. 
+  - Isso frequentemente resulta em um caminho mais longo em termos de distância, mas o tempo total pode ser semelhante ao encontrado em um grafo ponderado, especialmente quando a estrutura do grafo é favorável.
 
-As diferenças entre grafos ponderados e não ponderados revelam a importância de considerar os pesos nas arestas ao otimizar rotas em sistemas de transporte como o metrô. Para problemas onde os custos (tempo, distância) variam entre as arestas, a utilização de grafos ponderados e o algoritmo de Dijkstra se mostram mais adequados. Já em situações em que todos os caminhos são equivalentes, grafos não ponderados podem ser utilizados para simplificar a busca.
+### 5. Considerações Finais e melhorias no metro
 
-## 7. Recomendações
+A análise dos resultados demonstra claramente as diferenças de desempenho e a natureza dos algoritmos quando aplicados a grafos ponderados e não ponderados. Para rotas em uma rede de transporte, a escolha do algoritmo e a estrutura do grafo (ponderado ou não) têm um impacto significativo na eficiência do trajeto final e no tempo de execução. Em cenários onde o tempo é crítico, a implementação de algoritmos como Dijkstra em grafos ponderados é preferível, enquanto grafos não ponderados podem ser utilizados para situações onde a simplicidade e a exploração são mais relevantes.
+Com isso podemos concluir que esses sistemas quando melhores lapidados e treinados com mais dados de diferentes horários, poderia trazer uma leitura mais assertiva e dinamica dos melhores trajetos para cada hora
 
-- **Uso de Grafos Ponderados**: Para otimização em que o tempo de viagem ou custo varia.
-- **Uso de Grafos Não Ponderados**: Quando a equivalência das arestas é uma suposição válida e o foco é minimizar o número de paradas.
+---
+
+## Questão 2: Organização Dinâmica da Agenda do "Olha! Recife" com Algoritmos de Ordenação
+
+### 1. Introdução
+
+A iniciativa "Olha! Recife" possui uma agenda cheia de eventos turísticos que são frequentemente atualizados. Para garantir acesso a uma agenda organizada, é necessário implementar um sistema que ordene esses eventos em ordem cronológica automaticamente.
+
+### 2. Lista de Eventos Agendados
+
+- **Olha! Recife a Pé**: 27/09/2024, 09:30 h – Recife Walking Tour
+- **Olha! Recife no Rio**: 28/09/2024, 09:00 h – Ilha de Deus
+- **Olha! Recife de Ônibus**: 28/09/2024, 09:00 h – Jardim Botânico
+- **Olha! Recife de Ônibus**: 28/09/2024, 14:00 h – Instituto Ricardo Brennand
+- **Olha! Recife de Ônibus**: 29/09/2024, 13:00 h – Fundação Gilberto Freyre
+- **Olha! Recife Pedalando**: 29/09/2024, 09:00 h – Antigos Cinemas do Recife
+- **Olha! Recife a Pé**: 02/10/2024, 14:00 h – Pátio do Terço e Arredores
+- **Olha! Recife a Pé**: 04/10/2024, 09:30 h – Recife Walking Tour
+
+### 3. Tarefas a Serem Implementadas
+
+1. **Implementar um Algoritmo de Ordenação**:
+   - Utilize diferentes algoritmos de ordenação, como **Mergesort**, **Quicksort** e **Heapsort**, para organizar os eventos sempre que houver uma mudança.
+
+2. **Ordenação da Lista Inicial**:
+   - Ordene a lista inicial de eventos fornecida.
+
+3. **Adicionar Novos Eventos**:
+   - Adicione os seguintes novos eventos e reorganize a lista:
+     - **Olha! Recife Noturno - Tour Histórico**: 01/10/2024, 21:00
+     - **Olha! Recife Pedalando - Antigos Cinemas do Recife**: 29/09/2024, 09:00
+     - **Olha! Recife de Barco - Passeio no Capibaribe**: 26/09/2024, 12:00
+
+### 4. Análise de Desempenho
+
+1. **Medir o Tempo de Execução**:
+   - Compare o tempo de execução de cada algoritmo ao reorganizar a lista quando novos eventos são adicionados.
+
+2. **Análise da Complexidade**:
+   - Analise a complexidade dos algoritmos para listas que mudam frequentemente e sugira qual algoritmo seria o mais eficiente para manter a lista de eventos sempre atualizada.
+
+3. **Justificativa da Importância da Ordenação Eficiente**:
+   - Discuta como um sistema de ordenação eficiente pode melhorar a experiência do usuário ao visualizar a agenda atualizada.
+
+### 5. Algoritmos de Ordenação
+
+#### 5.1. Mergesort
+
+- **Descrição**: Algoritmo de ordenação que utiliza a técnica de divisão e conquista, dividindo a lista em sublistas até que cada sublista tenha um único elemento e, em seguida, mesclando as sublistas de forma ordenada.
+- **Complexidade**: O(n log n) em todos os casos.
+
+#### 5.2. Quicksort
+
+- **Descrição**: Um algoritmo que utiliza a técnica de divisão e conquista, escolhendo um "pivô" e particionando a lista em elementos menores e maiores que o pivô. Os sub-arranjos são então ordenados recursivamente.
+- **Complexidade**: O(n log n) em média.
+
+#### 5.3. Heapsort
+
+- **Descrição**: Um algoritmo de ordenação baseado em estruturas de dados de heap. Ele transforma a lista em um heap e remove o maior elemento repetidamente.
+- **Complexidade**: O(n log n) em todos os casos.
+
+### 6. Considerações Finais
+
+Um sistema de ordenação eficiente é crucial para garantir que os usuários tenham acesso a uma agenda atualizada e organizada. Isso melhora a experiência do usuário e assegura que os turistas possam planejar seus passeios de forma eficaz.
+
+## Conclusão
+
+As duas questões abordam a otimização e organização de informações, demonstrando a importância de algoritmos adequados em diferentes contextos. Tanto na otimização de rotas no metrô quanto na organização da agenda de eventos, a escolha do algoritmo adequado é fundamental para melhorar a eficiência e a experiência do usuário.

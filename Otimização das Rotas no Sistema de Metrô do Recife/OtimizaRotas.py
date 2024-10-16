@@ -15,7 +15,7 @@ def dijkstra(grafo, origem, destino=None):
         if estacao_atual in visitados:
             continue
         visitados.add(estacao_atual)
-        if estacao_atual == destino:
+        if destino and estacao_atual == destino:
             break
         for vizinho, peso in grafo[estacao_atual]:
             novo_tempo = tempo_atual + peso
@@ -23,7 +23,8 @@ def dijkstra(grafo, origem, destino=None):
                 distancias[vizinho] = novo_tempo
                 caminho[vizinho] = estacao_atual
                 heapq.heappush(fila_prioridade, (novo_tempo, vizinho))
-        return caminho, distancias[destino]
+
+    return caminho, distancias[destino]
 
 def bfs(metro_map, origem, destino):
     visitados = set()
@@ -118,8 +119,8 @@ while True:
   elif op == 2:
     #Dijkstra
     ini = time()
-    distancias, caminho, tempo_total = dijkstra(metro_map_n_pond, origem, destino)
-    caminho_final = reconstruir_caminho(caminho, origem, destino)
+    caminho, tempo_total = dijkstra(metro_map_n_pond, origem, destino)
+    caminho_final = reconstruir_caminho(caminho, destino)
     fim = time()
     processaResposta('Dijkstra', (fim-ini), origem, destino, caminho_final, tempo_total)
 
@@ -131,7 +132,7 @@ while True:
 
     #DFS
     ini = time()
-    caminho, tempo = dfs(metro_map_n_pond, origem, destino)
+    caminho, tempo_total = encontrar_caminho_mais_rapido(metro_map_n_pond, origem, destino)
     fim = time()
     processaResposta('DFS', (fim-ini), origem, destino, caminho, tempo_total)
 
