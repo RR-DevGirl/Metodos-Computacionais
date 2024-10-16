@@ -1,3 +1,8 @@
+# Projetos avaliativos para a cadeira de métodos computacionais
+## Professora responsavel: Amanda
+## Alunos: Lucas Alves, Lucas Eduardo e Rebeca Regina
+
+
 # Projeto de Otimização das Rotas no Sistema de Metrô do Recife e Organização Dinâmica da Agenda do "Olha! Recife"
 
 ## Questão 1: Otimização das Rotas no Sistema de Metrô do Recife
