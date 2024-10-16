@@ -4,6 +4,8 @@
 
 Neste projeto, analisamos o sistema de metrô do Recife modelando-o como um grafo. O objetivo é otimizar as rotas entre diferentes estações utilizando algoritmos de busca para determinar a rota mais eficiente em termos de tempo de viagem.
 
+![enter image description here](./Otimização%20das%20Rotas%20no%20Sistema%20de%20Metrô%20do%20Recife/docs/mapa-metro-recife-simplificado.jpg)
+
 ## 2. Resultados Obtidos
 
 A diferença nos tempos totais entre **grafos ponderados** e **não ponderados** foi significativa, com um total de **32 minutos** para o grafo ponderado e **14 minutos** para o grafo não ponderado. Essa discrepância é causada pela forma como os algoritmos lidam com os pesos das arestas.
